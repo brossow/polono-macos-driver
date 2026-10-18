@@ -1,0 +1,25 @@
+size-100x150mm             |99.84|149.93|1|1|PageSize=w283h425
+size-4x6in                 |101.6|152.4|1|1|PageSize=w288h432
+size-2.25x1.25in           |57.15|31.75|1|1|PageSize=w162h90
+size-1x2in                 |25.4 |50.8 |1|1|PageSize=w72h144
+size-18x58mm               |17.99|57.86|1|1|PageSize=w51h164
+size-custom-40x30mm        |40   |30   |1|1|PageSize=Custom.40x30mm
+size-custom-2x1in          |50.8 |25.4 |1|1|PageSize=Custom.2x1in
+direction-0                |49.74|29.99|1|1|PageSize=w141h85 Rotate=0
+direction-2                |49.74|29.99|1|1|PageSize=w141h85 Rotate=2
+direction-3                |49.74|29.99|1|1|PageSize=w141h85 Rotate=3
+media-continuous           |49.74|29.99|1|1|PageSize=w141h85 zeMediaTracking=Continuous
+darkness-0                 |49.74|29.99|1|1|PageSize=w141h85 Darkness=0
+darkness-15                |49.74|29.99|1|1|PageSize=w141h85 Darkness=15
+darkness-printer-setting   |49.74|29.99|1|1|PageSize=w141h85 Darkness=Default
+speed-1                    |49.74|29.99|1|1|PageSize=w141h85 zePrintRate=1
+speed-printer-setting      |49.74|29.99|1|1|PageSize=w141h85 zePrintRate=Default
+offset-horizontal-minus20  |49.74|29.99|1|1|PageSize=w141h85 AdjustHoriaontal=-20
+offset-vertical-plus7      |49.74|29.99|1|1|PageSize=w141h85 AdjustVertical=7
+feed-offset-minus5         |49.74|29.99|1|1|PageSize=w141h85 FeedOffset=-5
+dotted-line                |49.74|29.99|1|1|PageSize=w141h85 AutoDotted=1
+copies-3                   |49.74|29.99|1|3|PageSize=w141h85
+pages-2                    |49.74|29.99|2|1|PageSize=w141h85
+pages-2-copies-2-collated  |49.74|29.99|2|2|PageSize=w141h85 Collate=True
+pages-2-copies-2-uncollated|49.74|29.99|2|2|PageSize=w141h85 Collate=False
+all-options                |49.74|29.99|1|1|PageSize=w141h85 Darkness=12 zePrintRate=4 zeMediaTracking=Continuous AdjustHoriaontal=-3 AdjustVertical=5 FeedOffset=-7 AutoDotted=1 Rotate=3

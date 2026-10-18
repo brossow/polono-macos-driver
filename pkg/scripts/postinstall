@@ -1,0 +1,88 @@
+#!/bin/bash
+# Runs as root after the installer has copied the filter and PPDs.
+#
+# Switches every existing CUPS printer that uses Polono's own driver for a
+# supported model (PL60, PL70e-BT, PL420) over to this one, so a printer
+# that stopped working ("Filter failed") works again without being removed
+# and re-added. Printers already on this driver get this version's PPD, for
+# updates. Output goes to /var/log/install.log.
+#
+# For each such printer it:
+#   1. keeps a copy of its current PPD, so the uninstaller can put it back,
+#   2. swaps in this driver's PPD for the model (lpadmin -P), which keeps the
+#      printer's name, connection and location,
+#   3. carries over the default settings it had (label size, darkness, ...),
+#   4. re-enables it, in case CUPS paused it after the failures.
+
+PPD_DIR="/Library/Printers/PPDs/Contents/Resources"
+BACKUP_DIR="/Library/Application Support/Polono Open-Source Driver/backup"
+
+# Option keywords to carry over, per model. Only values the new PPD also
+# offers are kept.
+PL60_OPTIONS="PageSize ColorOption Orientation MediaMethod PaperType PrintSpeed
+              PrintDarkness ShiftMove PostAction FowardOffset MirrorImage NegativeImage"
+BEEPRT_OPTIONS="PageSize zeMediaTracking Darkness zePrintRate AdjustHoriaontal
+                AdjustVertical Rotate AutoDotted FeedOffset Threshold Brightness ImageFilter"
+
+log() { echo "Polono driver: $*"; }
+has() { grep -q "$1" "$2"; }
+
+# The model a CUPS PPD belongs to, and whether it is Polono's driver
+# ("polono") or this one ("open"). Polono's PPDs are recognised by their
+# filter and *Product, as the same filter can serve several models.
+identify() {
+  local ppd=$1
+  if has '^\*cupsFilter:.*rastertotspl"' "$ppd"; then
+    if has '^\*PolonoProfile: *"PL70e"' "$ppd"; then echo "PL70e open"
+    elif has '^\*PolonoProfile: *"PL420"' "$ppd"; then echo "PL420 open"
+    elif has '^\*PolonoProfile: *"PL60"' "$ppd"; then echo "PL60 open"
+    fi
+  elif has '^\*cupsFilter:.*raster-tspl"' "$ppd" && has '^\*Product:.*(PL60)' "$ppd"; then
+    echo "PL60 polono"
+  elif has '^\*cupsFilter:.*/ShippingPrinter/Filter/rastertolabel"' "$ppd" \
+       && has '^\*Product:.*(ShippingPrinter PL70e-BT)' "$ppd"; then
+    echo "PL70e polono"
+  elif has '^\*cupsFilter:.*/LabelPrinter/Filter/rastertolabel"' "$ppd" \
+       && has '^\*Product:.*(Label Printer)' "$ppd"; then
+    echo "PL420 polono"
+  fi
+}
+
+mkdir -p "$BACKUP_DIR"
+switched=0
+
+for ppd in /etc/cups/ppd/*.ppd; do
+  [ -f "$ppd" ] || continue
+  queue=$(basename "$ppd" .ppd)
+  read -r model driver <<< "$(identify "$ppd")"
+  [ -n "$model" ] || continue
+
+  new_ppd="$PPD_DIR/$model-open-source.ppd"
+  if [ "$model" = PL60 ]; then options=$PL60_OPTIONS; else options=$BEEPRT_OPTIONS; fi
+
+  # Back up Polono's PPD (once) so the uninstaller can restore it.
+  if [ "$driver" = polono ] && [ ! -f "$BACKUP_DIR/$queue.ppd" ]; then
+    cp -p "$ppd" "$BACKUP_DIR/$queue.ppd"
+  fi
+
+  args=()
+  for kw in $options; do
+    val=$(sed -n "s/^\*Default$kw: *//p" "$ppd" | tr -d '\r')
+    [ -n "$val" ] || continue
+    if grep -q "^\*$kw $val[/:]" "$new_ppd"; then
+      args+=(-o "$kw=$val")
+    fi
+  done
+
+  if lpadmin -p "$queue" -P "$new_ppd" "${args[@]}"; then
+    cupsenable "$queue"
+    cupsaccept "$queue"
+    log "printer '$queue' ($model) now uses the open-source driver"
+    switched=$((switched + 1))
+  else
+    log "could not switch printer '$queue' ($model)"
+  fi
+done
+
+log "$switched printer(s) switched"
+exit 0

@@ -1,0 +1,8 @@
+<512 x NUL>
+SIZE 57.2 mm, 45.2 mm
+SET TEAR ON
+SET CUTTER OFF
+SET PEEL OFF
+CLS
+BITMAP 0,0,58,361,1,<20938 bytes = 464 x 361 dots, 13.7% printed>
+PRINT 1,1

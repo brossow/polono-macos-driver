@@ -1,0 +1,47 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [4 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 113.39 85.04] /Resources << /Font << /F1 3 0 R >> >> /Contents 5 0 R >>
+endobj
+5 0 obj
+<< /Length 519 >>
+stream
+0 g 0 G 1 w
+0.5 0.5 112.39 84.04 re S
+0 85.04 m 21.26 85.04 l 0 63.78 l f
+0.90 g 11.34 29.76 9.07 12.76 re f
+0.80 g 20.41 29.76 9.07 12.76 re f
+0.70 g 29.48 29.76 9.07 12.76 re f
+0.60 g 38.55 29.76 9.07 12.76 re f
+0.50 g 47.62 29.76 9.07 12.76 re f
+0.40 g 56.69 29.76 9.07 12.76 re f
+0.30 g 65.76 29.76 9.07 12.76 re f
+0.20 g 74.83 29.76 9.07 12.76 re f
+0.10 g 83.91 29.76 9.07 12.76 re f
+0.00 g 92.98 29.76 9.07 12.76 re f
+0 g
+BT /F1 7.7 Tf 34.02 63.78 Td (40 x 30 mm) Tj ET
+BT /F1 7.7 Tf 11.34 10.20 Td (page 1) Tj ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000185 00000 n 
+0000000316 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+886
+%%EOF

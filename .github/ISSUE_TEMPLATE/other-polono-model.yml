@@ -1,0 +1,54 @@
+name: Does it work with my Polono model?
+description: You have a Polono printer other than the PL60, PL70e-BT or PL420 and want to know whether this driver can support it, or you can test a PL70e-BT or PL420.
+title: "Model support: Polono "
+labels: ["other model"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The **PL60** is supported and tested on a real printer. The **PL70e-BT** and **PL420** are supported and match Polono's driver, but haven't been tried on a real printer yet: if you have one, a report here helps a lot. Many Polono models use the same printer language (TSPL), so supporting another one usually takes one owner willing to run a few checks. Nothing here prints labels unless you choose to.
+  - type: input
+    id: model
+    attributes:
+      label: Printer model
+      description: As printed on the printer or its box, e.g. PL70e-BT, PL420, PL80E, A400, FT800.
+    validations:
+      required: true
+  - type: input
+    id: mac
+    attributes:
+      label: Mac and macOS version
+      description: e.g. MacBook Air M2, macOS 27.0. Apple menu → About This Mac shows both.
+    validations:
+      required: true
+  - type: dropdown
+    id: polono-driver
+    attributes:
+      label: Is Polono's own Mac driver installed?
+      options:
+        - "Yes, and it prints (Rosetta is installed)"
+        - "Yes, but it doesn't print (\"Filter failed\" or similar)"
+        - "No"
+        - "Not sure"
+    validations:
+      required: true
+  - type: textarea
+    id: driver-info
+    attributes:
+      label: Driver details (optional, but very helpful)
+      description: |
+        If Polono's driver is installed, open Terminal, paste this, and paste the output here. It only reads files and changes nothing:
+
+        `grep -h -E '^\*(NickName|cupsFilter|Product)' /etc/cups/ppd/*.ppd; ls /usr/libexec/cups/filter/ | grep -i -v -E '^(cg|commandtops|gziptoany|pstops|pstoappleps|rastertoepson|rastertohp|rastertolabel|rastertopwg|rastertotiff|rastertourf)'`
+      render: text
+  - type: checkboxes
+    id: help
+    attributes:
+      label: Can you help test?
+      options:
+        - label: I can run a few Terminal commands to capture what Polono's driver sends (needs Rosetta installed, and no labels are used).
+        - label: I can print one or two test labels.
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else

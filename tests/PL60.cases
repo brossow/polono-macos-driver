@@ -1,0 +1,34 @@
+size-4x6in                 |101.6|152.4|1|1|PageSize=4x6in
+size-100x150mm             |100  |150  |1|1|PageSize=w100h150
+size-1x1in                 |25.4 |25.4 |1|1|PageSize=1x1in
+size-60x40mm               |60   |40   |1|1|PageSize=60x40mm
+size-40x30                 |40   |30   |1|1|PageSize=40x30mm
+size-2.25x1.25in           |57.15|31.75|1|1|PageSize=2.25x1.25in
+size-57x45                 |57   |45   |1|1|PageSize=w57h45
+size-custom-2x1in          |50.8 |25.4 |1|1|PageSize=Custom.50.8x25.4mm
+grey-dithered              |40   |30   |1|1|PageSize=40x30mm ColorOption=GrayScale
+darkness-0                 |40   |30   |1|1|PageSize=40x30mm PrintDarkness=0
+darkness-15                |40   |30   |1|1|PageSize=40x30mm PrintDarkness=15
+speed-2                    |40   |30   |1|1|PageSize=40x30mm PrintSpeed=2
+speed-6                    |40   |30   |1|1|PageSize=40x30mm PrintSpeed=6
+media-gaps                 |40   |30   |1|1|PageSize=40x30mm PaperType=1
+media-black-mark           |40   |30   |1|1|PageSize=40x30mm PaperType=2
+media-continuous           |40   |30   |1|1|PageSize=40x30mm PaperType=3
+method-direct-thermal      |40   |30   |1|1|PageSize=40x30mm MediaMethod=1
+after-nothing              |40   |30   |1|1|PageSize=40x30mm PostAction=None
+shift-minus5               |40   |30   |1|1|PageSize=40x30mm ShiftMove=-5
+shift-plus5                |40   |30   |1|1|PageSize=40x30mm ShiftMove=5
+shift-0                    |40   |30   |1|1|PageSize=40x30mm ShiftMove=0
+offset-minus10             |40   |30   |1|1|PageSize=40x30mm FowardOffset=-10
+offset-plus10              |40   |30   |1|1|PageSize=40x30mm FowardOffset=10
+rotate-1                   |40   |30   |1|1|PageSize=40x30mm Orientation=1
+rotate-2                   |40   |30   |1|1|PageSize=40x30mm Orientation=2
+rotate-3                   |40   |30   |1|1|PageSize=40x30mm Orientation=3
+mirror                     |40   |30   |1|1|PageSize=40x30mm MirrorImage=True
+rotate-1-mirror            |40   |30   |1|1|PageSize=40x30mm Orientation=1 MirrorImage=True
+negative                   |40   |30   |1|1|PageSize=40x30mm NegativeImage=True
+copies-3                   |40   |30   |1|3|PageSize=40x30mm
+pages-2                    |40   |30   |2|1|PageSize=40x30mm
+pages-2-copies-2-collated  |40   |30   |2|2|PageSize=40x30mm Collate=True
+pages-2-copies-2-uncollated|40   |30   |2|2|PageSize=40x30mm Collate=False
+all-options                |40   |30   |1|1|PageSize=40x30mm MediaMethod=1 PaperType=2 PrintSpeed=3 PrintDarkness=12 ShiftMove=3 FowardOffset=-4 PostAction=None

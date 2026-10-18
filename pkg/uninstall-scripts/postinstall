@@ -1,0 +1,48 @@
+#!/bin/bash
+# Uninstaller. Runs as root; installs nothing.
+#
+# Puts every printer using this driver back the way it was, then removes
+# the driver's files and the installer's receipt. A printer the installer
+# switched over gets its saved PPD back. Any other printer using this driver
+# is switched to Polono's own driver for its model if that is installed.
+# Note that Polono's drivers only work on Apple Silicon Macs while Rosetta is
+# installed. Output goes to /var/log/install.log.
+
+FILTER="/usr/libexec/cups/filter/rastertotspl"
+PPD_DIR="/Library/Printers/PPDs/Contents/Resources"
+SUPPORT_DIR="/Library/Application Support/Polono Open-Source Driver"
+BACKUP_DIR="$SUPPORT_DIR/backup"
+
+log() { echo "Polono driver uninstall: $*"; }
+
+# Polono's own PPD for a model, as its installer places it.
+polono_ppd() {
+  case $1 in
+    PL60)  echo "$PPD_DIR/PL60.tspl.ppd.gz" ;;
+    PL70e) echo "$PPD_DIR/PL70e-BT.ppd" ;;
+    PL420) echo "$PPD_DIR/Label Printer.ppd.gz" ;;
+  esac
+}
+
+for ppd in /etc/cups/ppd/*.ppd; do
+  [ -f "$ppd" ] || continue
+  grep -q '^\*cupsFilter:.*rastertotspl"' "$ppd" || continue
+  queue=$(basename "$ppd" .ppd)
+  model=$(sed -n 's/^\*PolonoProfile: *"\(.*\)".*/\1/p' "$ppd")
+  original=$(polono_ppd "$model")
+
+  if [ -f "$BACKUP_DIR/$queue.ppd" ]; then
+    lpadmin -p "$queue" -P "$BACKUP_DIR/$queue.ppd" && log "restored printer '$queue'"
+  elif [ -n "$original" ] && [ -f "$original" ]; then
+    lpadmin -p "$queue" -P "$original" && log "switched printer '$queue' to Polono's driver"
+  else
+    log "printer '$queue' has no driver to go back to; it won't print until one is installed"
+  fi
+done
+
+rm -f "$FILTER" "$PPD_DIR/PL60-open-source.ppd" "$PPD_DIR/PL70e-open-source.ppd" \
+      "$PPD_DIR/PL420-open-source.ppd"
+rm -rf "$SUPPORT_DIR"
+pkgutil --forget io.github.brossow.polono-driver >/dev/null 2>&1
+log "removed"
+exit 0

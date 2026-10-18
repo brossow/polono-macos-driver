@@ -1,0 +1,380 @@
+*PPD-Adobe: "4.3"
+*% Open-source driver for the Polono PL60 thermal label printer.
+*% Not made, endorsed or supported by Polono. MIT licence, see LICENSE.
+*% Option keywords match Polono's own PPD on purpose, so printers switched
+*% over from Polono's driver keep their saved settings.
+*FormatVersion: "4.3"
+*FileVersion: "1.0.0"
+*LanguageVersion: English
+*LanguageEncoding: ISOLatin1
+*PCFileName: "PL60OPEN.PPD"
+*Manufacturer: "Polono"
+*Product: "(PL60)"
+*ModelName: "Polono PL60"
+*ShortNickName: "Polono PL60 (open-source)"
+*NickName: "Polono PL60 (open-source driver)"
+*1284DeviceID: "MFG:POLONO;MDL:PL60;CMD:TSPL;"
+*PolonoProfile: "PL60"
+*PSVersion: "(3010.000) 0"
+*LanguageLevel: "3"
+*ColorDevice: False
+*DefaultColorSpace: Gray
+*FileSystem: False
+*Throughput: "1"
+*LandscapeOrientation: Plus90
+*TTRasterizer: Type42
+*cupsVersion: 1.5
+*cupsManualCopies: False
+*cupsFilter: "application/vnd.cups-raster 100 rastertotspl"
+
+*% 4.25 in (108 mm) maximum width, 90 in maximum length.
+*MaxMediaWidth: "306.14"
+*MaxMediaHeight: "6480"
+*HWMargins: 0 0 0 0
+*CustomPageSize True: "pop pop pop <</PageSize[5 -2 roll]/ImagingBBox null>>setpagedevice"
+*ParamCustomPageSize Width: 1 points 14.17 306.14
+*ParamCustomPageSize Height: 2 points 14.17 6480
+*ParamCustomPageSize WidthOffset: 3 points 0 0
+*ParamCustomPageSize HeightOffset: 4 points 0 0
+*ParamCustomPageSize Orientation: 5 int 0 0
+*RequiresPageRegion All: True
+
+*OpenGroup: General/General
+
+*% Polono's own size names (wNNNhNNN) are kept so printers switched over
+*% from Polono's driver keep their saved label size. The default is 100 x 150 mm,
+*% not exact 4 x 6 in: many rolls sold as "4 x 6" are 100 mm wide, and a
+*% 101.6 mm page prints ~1.6 mm off the right edge of them. Printing an exact
+*% 4 x 6 PDF at 100 x 150 mm only scales it by 98%.
+*OpenUI *PageSize/Label Size: PickOne
+*OrderDependency: 10 AnySetup *PageSize
+*DefaultPageSize: w100h150
+*PageSize w100h150/100 x 150 mm (most 4 x 6 rolls): "<</PageSize[283 425]/ImagingBBox null>>setpagedevice"
+*PageSize 4x6in/4 x 6 in (exactly 101.6 x 152.4 mm): "<</PageSize[288 432]/ImagingBBox null>>setpagedevice"
+*PageSize 4x4in/4 x 4 in: "<</PageSize[288 288]/ImagingBBox null>>setpagedevice"
+*PageSize 4x3in/4 x 3 in: "<</PageSize[288 216]/ImagingBBox null>>setpagedevice"
+*PageSize 4x2in/4 x 2 in: "<</PageSize[288 144]/ImagingBBox null>>setpagedevice"
+*PageSize 4x1in/4 x 1 in: "<</PageSize[288 72]/ImagingBBox null>>setpagedevice"
+*PageSize 3x2in/3 x 2 in: "<</PageSize[216 144]/ImagingBBox null>>setpagedevice"
+*PageSize 3x1in/3 x 1 in: "<</PageSize[216 72]/ImagingBBox null>>setpagedevice"
+*PageSize 2.25x1.25in/2.25 x 1.25 in: "<</PageSize[162 90]/ImagingBBox null>>setpagedevice"
+*PageSize 2.25x0.75in/2.25 x 0.75 in: "<</PageSize[162 54]/ImagingBBox null>>setpagedevice"
+*PageSize 2x2in/2 x 2 in: "<</PageSize[144 144]/ImagingBBox null>>setpagedevice"
+*PageSize 2x1in/2 x 1 in: "<</PageSize[144 72]/ImagingBBox null>>setpagedevice"
+*PageSize 1.5x1in/1.5 x 1 in: "<</PageSize[108 72]/ImagingBBox null>>setpagedevice"
+*PageSize 1x1in/1 x 1 in: "<</PageSize[72 72]/ImagingBBox null>>setpagedevice"
+*PageSize w100h203/100 x 203 mm: "<</PageSize[283 575]/ImagingBBox null>>setpagedevice"
+*PageSize w100h180/100 x 180 mm: "<</PageSize[283 510]/ImagingBBox null>>setpagedevice"
+*PageSize w100h113/100 x 113 mm: "<</PageSize[283 320]/ImagingBBox null>>setpagedevice"
+*PageSize w100h100/100 x 100 mm: "<</PageSize[283 283]/ImagingBBox null>>setpagedevice"
+*PageSize w100h80/100 x 80 mm: "<</PageSize[283 227]/ImagingBBox null>>setpagedevice"
+*PageSize w80h60/80 x 60 mm: "<</PageSize[227 170]/ImagingBBox null>>setpagedevice"
+*PageSize w75h45/75 x 45 mm: "<</PageSize[213 128]/ImagingBBox null>>setpagedevice"
+*PageSize 70x50mm/70 x 50 mm: "<</PageSize[198.43 141.73]/ImagingBBox null>>setpagedevice"
+*PageSize 60x40mm/60 x 40 mm: "<</PageSize[170.08 113.39]/ImagingBBox null>>setpagedevice"
+*PageSize w57h45/57 x 45 mm: "<</PageSize[162 128]/ImagingBBox null>>setpagedevice"
+*PageSize 50x30mm/50 x 30 mm: "<</PageSize[141.73 85.04]/ImagingBBox null>>setpagedevice"
+*PageSize 50x25mm/50 x 25 mm: "<</PageSize[141.73 70.87]/ImagingBBox null>>setpagedevice"
+*PageSize 40x30mm/40 x 30 mm: "<</PageSize[113.39 85.04]/ImagingBBox null>>setpagedevice"
+*PageSize 30x20mm/30 x 20 mm: "<</PageSize[85.04 56.69]/ImagingBBox null>>setpagedevice"
+*CloseUI: *PageSize
+
+*OpenUI *PageRegion/Label Size: PickOne
+*OrderDependency: 10 AnySetup *PageRegion
+*DefaultPageRegion: w100h150
+*PageRegion w100h150/100 x 150 mm (most 4 x 6 rolls): "<</PageSize[283 425]/ImagingBBox null>>setpagedevice"
+*PageRegion 4x6in/4 x 6 in (exactly 101.6 x 152.4 mm): "<</PageSize[288 432]/ImagingBBox null>>setpagedevice"
+*PageRegion 4x4in/4 x 4 in: "<</PageSize[288 288]/ImagingBBox null>>setpagedevice"
+*PageRegion 4x3in/4 x 3 in: "<</PageSize[288 216]/ImagingBBox null>>setpagedevice"
+*PageRegion 4x2in/4 x 2 in: "<</PageSize[288 144]/ImagingBBox null>>setpagedevice"
+*PageRegion 4x1in/4 x 1 in: "<</PageSize[288 72]/ImagingBBox null>>setpagedevice"
+*PageRegion 3x2in/3 x 2 in: "<</PageSize[216 144]/ImagingBBox null>>setpagedevice"
+*PageRegion 3x1in/3 x 1 in: "<</PageSize[216 72]/ImagingBBox null>>setpagedevice"
+*PageRegion 2.25x1.25in/2.25 x 1.25 in: "<</PageSize[162 90]/ImagingBBox null>>setpagedevice"
+*PageRegion 2.25x0.75in/2.25 x 0.75 in: "<</PageSize[162 54]/ImagingBBox null>>setpagedevice"
+*PageRegion 2x2in/2 x 2 in: "<</PageSize[144 144]/ImagingBBox null>>setpagedevice"
+*PageRegion 2x1in/2 x 1 in: "<</PageSize[144 72]/ImagingBBox null>>setpagedevice"
+*PageRegion 1.5x1in/1.5 x 1 in: "<</PageSize[108 72]/ImagingBBox null>>setpagedevice"
+*PageRegion 1x1in/1 x 1 in: "<</PageSize[72 72]/ImagingBBox null>>setpagedevice"
+*PageRegion w100h203/100 x 203 mm: "<</PageSize[283 575]/ImagingBBox null>>setpagedevice"
+*PageRegion w100h180/100 x 180 mm: "<</PageSize[283 510]/ImagingBBox null>>setpagedevice"
+*PageRegion w100h113/100 x 113 mm: "<</PageSize[283 320]/ImagingBBox null>>setpagedevice"
+*PageRegion w100h100/100 x 100 mm: "<</PageSize[283 283]/ImagingBBox null>>setpagedevice"
+*PageRegion w100h80/100 x 80 mm: "<</PageSize[283 227]/ImagingBBox null>>setpagedevice"
+*PageRegion w80h60/80 x 60 mm: "<</PageSize[227 170]/ImagingBBox null>>setpagedevice"
+*PageRegion w75h45/75 x 45 mm: "<</PageSize[213 128]/ImagingBBox null>>setpagedevice"
+*PageRegion 70x50mm/70 x 50 mm: "<</PageSize[198.43 141.73]/ImagingBBox null>>setpagedevice"
+*PageRegion 60x40mm/60 x 40 mm: "<</PageSize[170.08 113.39]/ImagingBBox null>>setpagedevice"
+*PageRegion w57h45/57 x 45 mm: "<</PageSize[162 128]/ImagingBBox null>>setpagedevice"
+*PageRegion 50x30mm/50 x 30 mm: "<</PageSize[141.73 85.04]/ImagingBBox null>>setpagedevice"
+*PageRegion 50x25mm/50 x 25 mm: "<</PageSize[141.73 70.87]/ImagingBBox null>>setpagedevice"
+*PageRegion 40x30mm/40 x 30 mm: "<</PageSize[113.39 85.04]/ImagingBBox null>>setpagedevice"
+*PageRegion 30x20mm/30 x 20 mm: "<</PageSize[85.04 56.69]/ImagingBBox null>>setpagedevice"
+*CloseUI: *PageRegion
+
+*DefaultImageableArea: w100h150
+*ImageableArea w100h150: "0 0 283 425"
+*ImageableArea 4x6in: "0 0 288 432"
+*ImageableArea 4x4in: "0 0 288 288"
+*ImageableArea 4x3in: "0 0 288 216"
+*ImageableArea 4x2in: "0 0 288 144"
+*ImageableArea 4x1in: "0 0 288 72"
+*ImageableArea 3x2in: "0 0 216 144"
+*ImageableArea 3x1in: "0 0 216 72"
+*ImageableArea 2.25x1.25in: "0 0 162 90"
+*ImageableArea 2.25x0.75in: "0 0 162 54"
+*ImageableArea 2x2in: "0 0 144 144"
+*ImageableArea 2x1in: "0 0 144 72"
+*ImageableArea 1.5x1in: "0 0 108 72"
+*ImageableArea 1x1in: "0 0 72 72"
+*ImageableArea w100h203: "0 0 283 575"
+*ImageableArea w100h180: "0 0 283 510"
+*ImageableArea w100h113: "0 0 283 320"
+*ImageableArea w100h100: "0 0 283 283"
+*ImageableArea w100h80: "0 0 283 227"
+*ImageableArea w80h60: "0 0 227 170"
+*ImageableArea w75h45: "0 0 213 128"
+*ImageableArea 70x50mm: "0 0 198.43 141.73"
+*ImageableArea 60x40mm: "0 0 170.08 113.39"
+*ImageableArea w57h45: "0 0 162 128"
+*ImageableArea 50x30mm: "0 0 141.73 85.04"
+*ImageableArea 50x25mm: "0 0 141.73 70.87"
+*ImageableArea 40x30mm: "0 0 113.39 85.04"
+*ImageableArea 30x20mm: "0 0 85.04 56.69"
+
+*DefaultPaperDimension: w100h150
+*PaperDimension w100h150: "283 425"
+*PaperDimension 4x6in: "288 432"
+*PaperDimension 4x4in: "288 288"
+*PaperDimension 4x3in: "288 216"
+*PaperDimension 4x2in: "288 144"
+*PaperDimension 4x1in: "288 72"
+*PaperDimension 3x2in: "216 144"
+*PaperDimension 3x1in: "216 72"
+*PaperDimension 2.25x1.25in: "162 90"
+*PaperDimension 2.25x0.75in: "162 54"
+*PaperDimension 2x2in: "144 144"
+*PaperDimension 2x1in: "144 72"
+*PaperDimension 1.5x1in: "108 72"
+*PaperDimension 1x1in: "72 72"
+*PaperDimension w100h203: "283 575"
+*PaperDimension w100h180: "283 510"
+*PaperDimension w100h113: "283 320"
+*PaperDimension w100h100: "283 283"
+*PaperDimension w100h80: "283 227"
+*PaperDimension w80h60: "227 170"
+*PaperDimension w75h45: "213 128"
+*PaperDimension 70x50mm: "198.43 141.73"
+*PaperDimension 60x40mm: "170.08 113.39"
+*PaperDimension w57h45: "162 128"
+*PaperDimension 50x30mm: "141.73 85.04"
+*PaperDimension 50x25mm: "141.73 70.87"
+*PaperDimension 40x30mm: "113.39 85.04"
+*PaperDimension 30x20mm: "85.04 56.69"
+
+*CloseGroup: General
+
+*OpenGroup: Quality/Quality
+
+*OpenUI *Resolution/Resolution: PickOne
+*OrderDependency: 10 AnySetup *Resolution
+*DefaultResolution: 203dpi
+*Resolution 203dpi/203 dpi: "<</HWResolution[203 203]/cupsBitsPerColor 1/cupsRowCount 0/cupsRowFeed 0/cupsRowStep 0/cupsColorSpace 3>>setpagedevice"
+*CloseUI: *Resolution
+
+*% None sends 8-bit grey (the driver prints anything 50% grey or darker).
+*% GrayScale sends 1-bit, dithered by macOS before the driver sees it.
+*OpenUI *ColorOption/Grey Handling: PickOne
+*OrderDependency: 310 AnySetup *ColorOption
+*DefaultColorOption: None
+*ColorOption None/Sharp (black or white): "<</HWResolution[203 203]/cupsBitsPerColor 8/cupsColorSpace 3>>setpagedevice"
+*ColorOption GrayScale/Dithered: "<</HWResolution[203 203]/cupsBitsPerColor 1/cupsRowCount 8/cupsRowFeed 0/cupsRowStep 0/cupsColorSpace 3>>setpagedevice"
+*CloseUI: *ColorOption
+
+*CloseGroup: Quality
+
+*OpenGroup: PrinterOptions/Printer Options
+
+*OpenUI *Orientation/Rotation: PickOne
+*OrderDependency: 10 AnySetup *Orientation
+*DefaultOrientation: 0
+*Orientation 0/None: ""
+*Orientation 1/90 degrees clockwise: ""
+*Orientation 2/180 degrees: ""
+*Orientation 3/90 degrees anticlockwise: ""
+*CloseUI: *Orientation
+
+*OpenUI *MediaMethod/Print Method: PickOne
+*OrderDependency: 110 AnySetup *MediaMethod
+*DefaultMediaMethod: None
+*MediaMethod None/Printer setting: ""
+*MediaMethod 1/Direct thermal: ""
+*CloseUI: *MediaMethod
+
+*OpenUI *PaperType/Media Type: PickOne
+*OrderDependency: 120 AnySetup *PaperType
+*DefaultPaperType: None
+*PaperType None/Printer setting: ""
+*PaperType 1/Labels with gaps: ""
+*PaperType 2/Labels with black marks: ""
+*PaperType 3/Continuous roll: ""
+*CloseUI: *PaperType
+
+*OpenUI *PrintSpeed/Print Speed: PickOne
+*OrderDependency: 310 AnySetup *PrintSpeed
+*DefaultPrintSpeed: None
+*PrintSpeed None/Printer setting: ""
+*PrintSpeed 2/2 in/s: ""
+*PrintSpeed 3/3 in/s: ""
+*PrintSpeed 4/4 in/s: ""
+*PrintSpeed 5/5 in/s: ""
+*PrintSpeed 6/6 in/s: ""
+*CloseUI: *PrintSpeed
+
+*OpenUI *PrintDarkness/Darkness: PickOne
+*OrderDependency: 320 AnySetup *PrintDarkness
+*DefaultPrintDarkness: None
+*PrintDarkness None/Printer setting: ""
+*PrintDarkness 0/0 (lightest): ""
+*PrintDarkness 1/1: ""
+*PrintDarkness 2/2: ""
+*PrintDarkness 3/3: ""
+*PrintDarkness 4/4: ""
+*PrintDarkness 5/5: ""
+*PrintDarkness 6/6: ""
+*PrintDarkness 7/7: ""
+*PrintDarkness 8/8: ""
+*PrintDarkness 9/9: ""
+*PrintDarkness 10/10: ""
+*PrintDarkness 11/11: ""
+*PrintDarkness 12/12: ""
+*PrintDarkness 13/13: ""
+*PrintDarkness 14/14: ""
+*PrintDarkness 15/15 (darkest): ""
+*CloseUI: *PrintDarkness
+
+*OpenUI *ShiftMove/Vertical Start Position: PickOne
+*OrderDependency: 510 AnySetup *ShiftMove
+*DefaultShiftMove: None
+*ShiftMove None/Printer setting: ""
+*ShiftMove -12/-12 mm: ""
+*ShiftMove -11/-11 mm: ""
+*ShiftMove -10/-10 mm: ""
+*ShiftMove -9/-9 mm: ""
+*ShiftMove -8/-8 mm: ""
+*ShiftMove -7/-7 mm: ""
+*ShiftMove -6/-6 mm: ""
+*ShiftMove -5/-5 mm: ""
+*ShiftMove -4/-4 mm: ""
+*ShiftMove -3/-3 mm: ""
+*ShiftMove -2/-2 mm: ""
+*ShiftMove -1/-1 mm: ""
+*ShiftMove 0/0 mm: ""
+*ShiftMove 1/+1 mm: ""
+*ShiftMove 2/+2 mm: ""
+*ShiftMove 3/+3 mm: ""
+*ShiftMove 4/+4 mm: ""
+*ShiftMove 5/+5 mm: ""
+*ShiftMove 6/+6 mm: ""
+*ShiftMove 7/+7 mm: ""
+*ShiftMove 8/+8 mm: ""
+*ShiftMove 9/+9 mm: ""
+*ShiftMove 10/+10 mm: ""
+*ShiftMove 11/+11 mm: ""
+*ShiftMove 12/+12 mm: ""
+*CloseUI: *ShiftMove
+
+*OpenUI *PostAction/After Printing: PickOne
+*OrderDependency: 610 AnySetup *PostAction
+*DefaultPostAction: 1
+*PostAction 1/Stop at tear-off position: ""
+*PostAction None/Do nothing: ""
+*CloseUI: *PostAction
+
+*% "FowardOffset" (sic) is Polono's keyword, kept so saved settings carry over.
+*OpenUI *FowardOffset/Stop Position Offset: PickOne
+*OrderDependency: 710 AnySetup *FowardOffset
+*DefaultFowardOffset: None
+*FowardOffset None/Printer setting: ""
+*FowardOffset -30/-30 mm: ""
+*FowardOffset -29/-29 mm: ""
+*FowardOffset -28/-28 mm: ""
+*FowardOffset -27/-27 mm: ""
+*FowardOffset -26/-26 mm: ""
+*FowardOffset -25/-25 mm: ""
+*FowardOffset -24/-24 mm: ""
+*FowardOffset -23/-23 mm: ""
+*FowardOffset -22/-22 mm: ""
+*FowardOffset -21/-21 mm: ""
+*FowardOffset -20/-20 mm: ""
+*FowardOffset -19/-19 mm: ""
+*FowardOffset -18/-18 mm: ""
+*FowardOffset -17/-17 mm: ""
+*FowardOffset -16/-16 mm: ""
+*FowardOffset -15/-15 mm: ""
+*FowardOffset -14/-14 mm: ""
+*FowardOffset -13/-13 mm: ""
+*FowardOffset -12/-12 mm: ""
+*FowardOffset -11/-11 mm: ""
+*FowardOffset -10/-10 mm: ""
+*FowardOffset -9/-9 mm: ""
+*FowardOffset -8/-8 mm: ""
+*FowardOffset -7/-7 mm: ""
+*FowardOffset -6/-6 mm: ""
+*FowardOffset -5/-5 mm: ""
+*FowardOffset -4/-4 mm: ""
+*FowardOffset -3/-3 mm: ""
+*FowardOffset -2/-2 mm: ""
+*FowardOffset -1/-1 mm: ""
+*FowardOffset 0/0 mm: ""
+*FowardOffset 1/+1 mm: ""
+*FowardOffset 2/+2 mm: ""
+*FowardOffset 3/+3 mm: ""
+*FowardOffset 4/+4 mm: ""
+*FowardOffset 5/+5 mm: ""
+*FowardOffset 6/+6 mm: ""
+*FowardOffset 7/+7 mm: ""
+*FowardOffset 8/+8 mm: ""
+*FowardOffset 9/+9 mm: ""
+*FowardOffset 10/+10 mm: ""
+*FowardOffset 11/+11 mm: ""
+*FowardOffset 12/+12 mm: ""
+*FowardOffset 13/+13 mm: ""
+*FowardOffset 14/+14 mm: ""
+*FowardOffset 15/+15 mm: ""
+*FowardOffset 16/+16 mm: ""
+*FowardOffset 17/+17 mm: ""
+*FowardOffset 18/+18 mm: ""
+*FowardOffset 19/+19 mm: ""
+*FowardOffset 20/+20 mm: ""
+*FowardOffset 21/+21 mm: ""
+*FowardOffset 22/+22 mm: ""
+*FowardOffset 23/+23 mm: ""
+*FowardOffset 24/+24 mm: ""
+*FowardOffset 25/+25 mm: ""
+*FowardOffset 26/+26 mm: ""
+*FowardOffset 27/+27 mm: ""
+*FowardOffset 28/+28 mm: ""
+*FowardOffset 29/+29 mm: ""
+*FowardOffset 30/+30 mm: ""
+*CloseUI: *FowardOffset
+
+*CloseGroup: PrinterOptions
+
+*OpenGroup: Effects/Effects
+
+*OpenUI *MirrorImage/Mirror Image: Boolean
+*OrderDependency: 210 AnySetup *MirrorImage
+*DefaultMirrorImage: False
+*MirrorImage True/Yes: ""
+*MirrorImage False/No: ""
+*CloseUI: *MirrorImage
+
+*OpenUI *NegativeImage/Negative Image: Boolean
+*OrderDependency: 220 AnySetup *NegativeImage
+*DefaultNegativeImage: False
+*NegativeImage True/Yes: ""
+*NegativeImage False/No: ""
+*CloseUI: *NegativeImage
+
+*CloseGroup: Effects

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<installer-gui-script minSpecVersion="2">
+    <title>Uninstall Polono Label Printer Driver (open-source)</title>
+    <welcome file="welcome.html" mime-type="text/html"/>
+    <options customize="never" require-scripts="true" hostArchitectures="arm64,x86_64"/>
+    <domains enable_localSystem="true"/>
+    <choices-outline><line choice="default"><line choice="uninstall"/></line></choices-outline>
+    <choice id="default"/>
+    <choice id="uninstall" visible="false"><pkg-ref id="io.github.brossow.polono-driver.uninstall"/></choice>
+    <pkg-ref id="io.github.brossow.polono-driver.uninstall" version="__VERSION__" onConclusion="none">polono-uninstall-component.pkg</pkg-ref>
+</installer-gui-script>
